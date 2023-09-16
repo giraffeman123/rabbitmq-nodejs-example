@@ -1,0 +1,29 @@
+version: "3"
+services:
+  consumer-api:    
+    build:
+      context: ./consumer-api
+      dockerfile: Dockerfile    
+    container_name: consumer-api
+    ports:
+      - "8080:80"
+    environment:
+      - TZ=America/Tijuana
+  producer-api:    
+    build:
+      context: ./producer-api
+      dockerfile: Dockerfile    
+    container_name: producer-api
+    ports:
+      - "8081:80"
+    environment:
+      - TZ=America/Tijuana
+  rabbitmq:    
+    build:
+      context: ./rabbitmq
+      dockerfile: Dockerfile        
+    hostname: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672      
